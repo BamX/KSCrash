@@ -208,7 +208,7 @@ failed:
             return;
         }
     }
-    
+
     _userInfo = userInfo;
     kscrash_setUserInfoJSON([userInfoJSON bytes]);
 }
@@ -330,18 +330,18 @@ failed:
                     name:UIApplicationWillTerminateNotification
                   object:nil];
 #endif
-    
+
     return true;
 }
 
 - (void) sendAllReportsWithCompletion:(KSCrashReportFilterCompletion) onCompletion
 {
     [self.crashReportStore pruneReportsLeaving:self.maxStoredReports];
-    
+
     NSArray* reports = [self allReports];
-    
+
     KSLOG_INFO(@"Sending %d crash reports", [reports count]);
-    
+
     [self sendReports:reports
          onCompletion:^(NSArray* filteredReports, BOOL completed, NSError* error)
      {
@@ -439,7 +439,7 @@ SYNTHESIZE_CRASH_STATE_PROPERTY(BOOL, crashedLastLaunch)
         kscrash_i_callCompletion(onCompletion, reports, YES, nil);
         return;
     }
-    
+
     if(self.sink == nil)
     {
         kscrash_i_callCompletion(onCompletion, reports, NO,
@@ -448,7 +448,7 @@ SYNTHESIZE_CRASH_STATE_PROPERTY(BOOL, crashedLastLaunch)
                                               description:@"No sink set. Crash reports not sent."]);
         return;
     }
-    
+
     [self.sink filterReports:reports
                 onCompletion:^(NSArray* filteredReports, BOOL completed, NSError* error)
      {
@@ -492,7 +492,7 @@ SYNTHESIZE_CRASH_STATE_PROPERTY(BOOL, crashedLastLaunch)
 {
     NSError* error = nil;
     NSFileManager* fm = [NSFileManager defaultManager];
-    
+
     if(![fm fileExistsAtPath:path])
     {
         if(![fm createDirectoryAtPath:path
@@ -504,7 +504,7 @@ SYNTHESIZE_CRASH_STATE_PROPERTY(BOOL, crashedLastLaunch)
             return NO;
         }
     }
-    
+
     return YES;
 }
 
@@ -553,7 +553,7 @@ SYNTHESIZE_CRASH_STATE_PROPERTY(BOOL, crashedLastLaunch)
 
 
 //! Project version number for KSCrashFramework.
-const double KSCrashFrameworkVersionNumber = 1.85;
+const double KSCrashFrameworkVersionNumber = 1.86;
 
 //! Project version string for KSCrashFramework.
-const unsigned char KSCrashFrameworkVersionString[] = "1.8.5";
+const unsigned char KSCrashFrameworkVersionString[] = "1.8.6";
