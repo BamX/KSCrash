@@ -107,10 +107,10 @@
 @synthesize reportStyle = _reportStyle;
 
 /** Date formatter for Apple date format in crash reports. */
-NSDateFormatter* g_dateFormatter;
+static NSDateFormatter* g_dateFormatter;
 
 /** Printing order for registers. */
-NSDictionary* g_registerOrders;
+static NSDictionary* g_registerOrders;
 
 + (void) initialize
 {
